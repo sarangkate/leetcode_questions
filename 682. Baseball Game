@@ -1,0 +1,20 @@
+class Solution:
+    def calPoints(self, operations: List[str]) -> int:
+        stack = []
+        for i in range(len(operations)):
+            if operations[i] == 'D':
+                if len(stack) > 0:
+                    new_score = 2*stack[-1]
+                    stack.append(new_score)
+            elif operations[i] == 'C':
+                if len(stack) > 0:
+                    stack.pop()
+            elif operations[i] == '+':
+                if len(stack) >= 2:
+                    new_score = stack[-1] + stack[-2]
+                    stack.append(new_score)
+            else:
+                num = int(operations[i])
+                stack.append(num)
+        return sum(stack)
+            
